@@ -1,0 +1,372 @@
+/* General Reset and Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+  background-image: url('/back.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+  background-color: #e0f7fa; /* Fallback background color */
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header Styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: linear-gradient(to right, #20b2aa, #075e54); /* Gradient header */
+  color: white;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo Container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+.logo-container img {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  border-radius: 50%; /* Circular logo */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container h2 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Navigation Menu */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  font-family: 'Inter', sans-serif;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #b2ff59;
+  text-decoration: underline 2px solid #b2ff59;
+}
+
+.menu li a.login {
+  background-color: white;
+  color: #075e54;
+  padding: 8px 20px;
+  border-radius: 25px; /* Pill-shaped button */
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu li a.login:hover {
+  background-color: #e0f7fa;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+/* Container Styling */
+.container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Heading */
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #128c7e;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+/* Input Fields */
+.form-group input,
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+input[type="date"]:focus {
+  border-color: #20b2aa;
+  box-shadow: 0 0 8px rgba(32, 178, 170, 0.3);
+  outline: none;
+}
+
+/* Gender Options */
+.gender-options {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.gender-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.gender-options input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #20b2aa; /* Custom radio color */
+}
+
+/* Checkbox Group */
+.form-group.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-group.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #20b2aa; /* Custom checkbox color */
+}
+
+/* Terms and Conditions Link */
+.form-group a {
+  color: #20b2aa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.form-group a:hover {
+  color: #075e54;
+  text-decoration: underline;
+}
+
+/* Password Strength Meter */
+#password-strength {
+  width: 100%;
+  height: 6px;
+  background-color: #e0e0e0;
+  margin-top: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#password-strength-bar {
+  height: 100%;
+  width: 0;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Password Strength Colors */
+#password-strength-bar.weak {
+  background-color: #d32f2f; /* Red for weak */
+}
+
+#password-strength-bar.medium {
+  background-color: #ffca28; /* Yellow for medium */
+}
+
+#password-strength-bar.strong {
+  background-color: #4caf50; /* Green for strong */
+}
+
+#password-strength-text {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* Submit Button */
+button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to right, #128c7e, #20b2aa);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, #20b2aa, #128c7e);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Toggle Link */
+.toggle-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.toggle-link a {
+  color: #20b2aa;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.toggle-link a:hover {
+  color: #075e54;
+  text-decoration: underline;
+}
+
+/* Error and Success Messages */
+.error {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 6px;
+  background: #ffebee;
+  padding: 6px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.success-message {
+  color: #4caf50;
+  font-size: 14px;
+  margin-top: 10px;
+  background: #e8f5e9;
+  padding: 6px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    max-width: 85%;
+    margin: 30px auto;
+    padding: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .logo-container h2 {
+    font-size: 24px;
+  }
+
+  .logo-container img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container h2 {
+    font-size: 22px;
+  }
+
+  button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .form-group input,
+  input[type="date"] {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .gender-options {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

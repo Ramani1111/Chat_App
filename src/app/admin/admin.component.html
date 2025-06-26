@@ -1,0 +1,107 @@
+<head>
+  <link rel="icon" href="/chatlo.jpg" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-container">
+      <img src="/chatlo.jpg" alt="ChatsApp Logo">
+      <h2>ChatsApp</h2>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a routerLink="/features" routerLinkActive="active">Features</a></li>
+        <li><a routerLink="/privacy" routerLinkActive="active">Privacy</a></li>
+        <li><a routerLink="/helpcenter" routerLinkActive="active">Help Center</a></li>
+        <li><a (click)="logout()" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Admin Content -->
+  <div class="admin-container">
+    <h2>Admin Dashboard</h2>
+
+    <!-- Success/Error Messages -->
+    <div *ngIf="message" class="success-message">{{ message }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <!-- User Management -->
+    <div class="user-management">
+      <h3>Manage Users</h3>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.isAdmin ? 'Yes' : 'No' }}</td>
+            <td>
+              <button (click)="viewChatHistory(user._id)">View Chat History</button>
+              <button *ngIf="!user.isAdmin" (click)="deleteUser(user._id)" class="delete-btn">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Chat History -->
+    <div class="chat-history" *ngIf="selectedUser">
+      <h3>Chat History</h3>
+      <div *ngIf="chatHistory.length === 0" class="no-messages">
+        No messages found for this user.
+      </div>
+      <div class="message-list" *ngIf="chatHistory.length > 0">
+        <div *ngFor="let message of chatHistory" class="message">
+          <p><strong>{{ message.from }}</strong> to <strong>{{ message.to }}</strong> ({{ message.timestamp | date:'short' }}):</p>
+          <p>{{ message.text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="/chatlo.jpg" alt="ChatsApp Logo">
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a routerLink="/features">Features</a></li>
+          <li><a routerLink="/privacy">Privacy</a></li>
+          <li><a routerLink="/contact">Contact Us</a></li>
+          <li><a routerLink="/helpcenter">Help Center</a></li>
+        </ul>
+      </div>
+      <div class="social-icons">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <img src="/ins.jpg" alt="Instagram">
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <img src="/twit.png" alt="Twitter">
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <img src="/face.png" alt="Facebook">
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>2025 © ChatsApp LLC</p>
+      <nav>
+        <ul>
+          <li><a href="#">Terms & Privacy Policy</a></li>
+          <li><a href="#">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>

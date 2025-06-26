@@ -1,0 +1,71 @@
+<!-- app.component.html -->
+<div class="app-container">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="user-profile">
+        <div class="avatar-circle">{{ currentUser[0] }}</div>
+        <h3>{{ currentUser }}</h3>
+      </div>
+      <div class="sidebar-actions">
+        <button class="icon-btn" (click)="addContact()">Add +</button>
+        <button class="icon-btn" (click)="logout()">Logout ⎋</button>
+      </div>
+    </div>
+
+    <div class="contacts-list">
+      <div class="contact" *ngFor="let contact of contacts"
+           (click)="openChat(contact)"
+           [class.active]="contact === currentChatUser">
+        <div class="contact-content">
+          <div class="avatar-circle">{{ contact[0] }}</div>
+          <div class="contact-info">
+            <h4>{{ contact }}</h4>
+            <p class="last-message">{{ getLastMessagePreview(contact) || 'Click to chat...' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-area" *ngIf="currentChatUser; else selectContact">
+    <div class="chat-header">
+      <div class="chat-partner">
+        <div class="avatar-circle">{{ currentChatUser[0] }}</div>
+        <h4>{{ currentChatUser }}</h4>
+        <span class="typing-indicator" *ngIf="isTyping">typing...</span>
+      </div>
+    </div>
+
+    <div class="chat-messages" #messageContainer>
+      <div *ngFor="let msg of messages"
+           class="message"
+           [ngClass]="{'sent': msg.from === currentUser, 'received': msg.from !== currentUser}">
+        <div class="message-content">
+          <div class="message-text">{{ msg.text }}</div>
+          <div class="message-time">{{ msg.timestamp | date:'shortTime' }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+
+      <input type="text"
+             [(ngModel)]="messageInput"
+             (keyup.enter)="sendMessage()"
+             (input)="onTyping()"
+             placeholder="Type a message..." />
+             <button (click)="toggleEmojiPicker()" class="emoji-btn">😊</button>
+      <div class="emoji-picker" *ngIf="showEmojiPicker">
+        <span *ngFor="let emoji of emojis" (click)="addEmoji(emoji)" class="emoji">{{ emoji }}</span>
+      </div>
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <ng-template #selectContact>
+    <div class="empty-chat">
+      <h4>Select a contact to start chatting</h4>
+      
+    </div>
+  </ng-template>
+</div>

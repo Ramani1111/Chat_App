@@ -1,0 +1,88 @@
+<div class="header">
+  <div class="logo-container">
+      <img src="/chatlo.jpg" alt="ChatsApp Logo">
+      <h2>ChatsApp</h2>
+  </div>
+  <nav>
+      <ul class="menu">
+          <li><a routerLink="/features" routerLinkActive="active">Features</a></li>
+          <li><a routerLink="/privacy" routerLinkActive="active">Privacy</a></li>
+          <li><a routerLink="/helpcenter" routerLinkActive="active">Help Center</a></li>
+          <li><a routerLink="/login" routerLinkActive="active" class="login">Log in</a></li>
+      </ul>
+  </nav>
+</div>
+<div class="container">
+  <h2>Register</h2>
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+
+    <!-- Name -->
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="username" [(ngModel)]="model.username" placeholder="Enter your name" required>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" [(ngModel)]="model.email" placeholder="Enter your email" required>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="model.password" (input)="checkPasswordStrength()" placeholder="Enter your password" required>
+        <div id="password-strength-bar" class="strength-bar" [ngStyle]="{'width': passwordStrength + '%', 'background-color': passwordStrengthColor}"></div>
+        <div id="password-strength-text">{{ passwordStrengthText }}</div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="model.confirmPassword" placeholder="Confirm your password" required>
+        <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" [(ngModel)]="model.dob" required>
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group">
+        <label>Gender</label>
+        <div class="gender-options">
+            <label>
+                <input type="radio" name="gender" [(ngModel)]="model.gender" value="male" required> Male
+            </label>
+            <label>
+                <input type="radio" name="gender" [(ngModel)]="model.gender" value="female" required> Female
+            </label>
+            <label>
+                <input type="radio" name="gender" [(ngModel)]="model.gender" value="other" required> Other
+            </label>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div class="form-group checkbox-group">
+        <label>
+            <input type="checkbox" id="terms" name="terms" [(ngModel)]="model.terms" required>
+            I agree to the <a href="#" target="_blank">Terms and Conditions</a>
+        </label>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="!registerForm.form.valid">Register</button>
+
+    <!-- Login Link -->
+    <div class="toggle-link">
+        <p>Already have an account? <a routerLink="/login">Login</a></p>
+    </div>
+
+  </form>
+
+  <p id="message" *ngIf="message" class="success-message">{{ message }}</p>
+  <p id="error-message" *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>
