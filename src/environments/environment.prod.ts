@@ -1,8 +1,8 @@
 // src/environments/environment.prod.ts
 export const environment = {
   production: true,
-  apiUrl: 'http://10.10.14.42:3000',
-  socketUrl: 'http://10.10.14.42:3000'
+  apiUrl: 'http://localhost:3000',
+  socketUrl: 'http://localhost:3000'
 };
 /*export const environment = {
   production: true,

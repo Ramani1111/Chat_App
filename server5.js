@@ -9,10 +9,10 @@ const { Server } = require('socket.io');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: 'http://10.10.14.42:4200', methods: ['GET', 'POST'] }
+  cors: { origin: 'http://localhost:4200', methods: ['GET', 'POST'] }
 });
 
-app.use(cors({ origin: 'http://10.10.14.42:4200', methods: ['GET', 'POST', 'DELETE', 'PUT'], allowedHeaders: ['Authorization', 'Content-Type'] }));
+app.use(cors({ origin: 'http://localhost:4200', methods: ['GET', 'POST', 'DELETE', 'PUT'], allowedHeaders: ['Authorization', 'Content-Type'] }));
 app.use(express.json());
 
 const uri = 'mongodb://127.0.0.1:27017/chatsapp';
