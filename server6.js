@@ -18,7 +18,7 @@ app.use(express.json());
 const uri = 'mongodb://127.0.0.1:27017/chatsapp';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-let db;
+let db; 
 
 async function connectToMongo() {
   try {
