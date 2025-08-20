@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000',
+  apiUrl: 'https://chat-app-backend-gmgj.onrender.com',
 
-  socketUrl: 'http://localhost:4000'
+  socketUrl: 'https://chat-app-backend-gmgj.onrender.com'
 };
